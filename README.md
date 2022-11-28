@@ -15,3 +15,28 @@ Options:
   --help, -h             display this help and exit
 ```
 
+## Container spec
+
+Example container spec, passing required positional argument:
+
+```yaml
+spec:
+  containers:
+  - name: hello-path
+    image: ryanhatfield/hello-path:latest
+    args: ['/hello-world']
+    livenessProbe:
+      httpGet:
+        path: /hello-world/live
+        port: http
+        scheme: HTTP
+    readinessProbe:
+      httpGet:
+        path: /hello-world/ready
+        port: http
+        scheme: HTTP
+    ports:
+    - name: http
+      containerPort: 8081
+      protocol: TCP
+```
